@@ -20,7 +20,7 @@ export class CoursesService {
     return this.courseRepository.find({
       relations: ['tags'],
       order: {
-        name: 'ASC',
+        course: 'ASC',
       },
     });
   }

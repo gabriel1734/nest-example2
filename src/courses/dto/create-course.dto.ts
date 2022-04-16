@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 
 export class CreateCourseDto {
   @IsString()
-  readonly name: string;
+  readonly course: string;
   @IsString()
   readonly description: string;
   @IsString({ each: true })

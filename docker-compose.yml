@@ -2,9 +2,20 @@ version: '3'
 
 services:
 
+    app: 
+      build: .
+      entrypoint: .docker/entrypoint.sh
+      container_name: cursonestjs-app
+      ports:
+        - "3000:3000"
+      volumes: 
+        - .docker/nodedata:/home/node/app
+      depends_on:
+        - db
+
     db:
       build: .docker/postgres
-      container_name: api-nest
+      container_name: bd-nest
       restart: always
       tty: true
       ports:
@@ -14,3 +25,15 @@ services:
       environment:
         - POSTGRES_PASSWORD=docker
         - POSTGRES_DB=api-nest
+
+    pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin_nest
+      tty: true
+      environment:
+        - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+        - PGADMIN_DEFAULT_PASSWORD=admin
+      ports:
+        - '8000:80'
+      depends_on:
+        - db

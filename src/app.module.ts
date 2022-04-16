@@ -15,7 +15,7 @@ import { CoursesModule } from './courses/courses.module';
       password: 'docker',
       database: 'api-nest',
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: false,
     }),
   ],
   controllers: [AppController],
