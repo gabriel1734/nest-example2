@@ -19,9 +19,6 @@ export class CoursesService {
   findAll() {
     return this.courseRepository.find({
       relations: ['tags'],
-      order: {
-        course: 'ASC',
-      },
     });
   }
 
@@ -56,7 +53,7 @@ export class CoursesService {
         updateCourseDto.tags.map((name) => this.preloadTagByName(name)),
       ));
     const course = await this.courseRepository.preload({
-      id: +id,
+      id: id,
       ...updateCourseDto,
       tags,
     });
